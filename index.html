@@ -7,13 +7,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #0b0f0d;
-            --card-bg: #131a16;
+            --bg-color: #080d0a;
+            --card-bg: #0f1712;
             --accent-green: #00ff66;
             --accent-green-hover: #00cc52;
             --text-main: #ffffff;
-            --text-muted: #a3b8b0;
-            --border-color: #1f3329;
+            --text-muted: #94a3b8;
+            --border-color: #1a2e22;
         }
 
         * {
@@ -36,30 +36,48 @@
             align-items: center;
             padding: 20px 5%;
             border-bottom: 1px solid var(--border-color);
-            background: rgba(11, 15, 13, 0.9);
+            background: rgba(8, 13, 10, 0.95);
             position: sticky;
             top: 0;
             z-index: 1000;
             backdrop-filter: blur(10px);
         }
 
-        .logo {
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon {
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, #00ff66, #008833);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: 0 0 15px rgba(0, 255, 102, 0.4);
+        }
+
+        .logo-text {
             font-weight: 700;
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             color: var(--accent-green);
             letter-spacing: 1px;
         }
 
         .nav-links {
             display: flex;
-            gap: 20px;
+            gap: 25px;
             list-style: none;
         }
 
         .nav-links a {
             color: var(--text-muted);
             text-decoration: none;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             transition: color 0.3s;
         }
 
@@ -69,16 +87,53 @@
 
         .hero {
             text-align: center;
-            padding: 80px 20px 50px;
+            padding: 70px 20px 50px;
             max-width: 900px;
             margin: 0 auto;
         }
 
+        /* تصميم أيقونة الروبوت واللوجو الرئيسي في الهيرو */
+        .hero-robot-avatar {
+            width: 130px;
+            height: 130px;
+            background: linear-gradient(180deg, #132219 0%, #0f1712 100%);
+            border: 2px solid var(--accent-green);
+            border-radius: 30px;
+            margin: 0 auto 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            box-shadow: 0 0 30px rgba(0, 255, 102, 0.25);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+        .hero-robot-avatar .robot-face {
+            font-size: 3.5rem;
+        }
+
+        .hero-robot-avatar .status-badge-absolute {
+            position: absolute;
+            bottom: -10px;
+            background: var(--accent-green);
+            color: #000;
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 3px 10px;
+            border-radius: 20px;
+        }
+
         .hero h1 {
-            font-size: 3rem;
+            font-size: 3.2rem;
             font-weight: 700;
             margin-bottom: 10px;
             color: var(--text-main);
+            letter-spacing: -1px;
         }
 
         .hero h1 span {
@@ -86,23 +141,26 @@
         }
 
         .hero p.tagline {
-            font-size: 1.3rem;
+            font-size: 1.4rem;
             color: var(--accent-green);
-            margin-bottom: 15px;
+            margin-bottom: 12px;
             font-weight: 600;
         }
 
         .hero p.desc {
-            font-size: 1rem;
+            font-size: 1.05rem;
             color: var(--text-muted);
-            margin-bottom: 30px;
+            margin-bottom: 35px;
+            max-width: 650px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .badge {
             display: inline-block;
             background: rgba(0, 255, 102, 0.1);
             color: var(--accent-green);
-            padding: 6px 16px;
+            padding: 6px 18px;
             border-radius: 20px;
             font-size: 0.85rem;
             font-weight: 600;
@@ -114,24 +172,24 @@
             display: inline-block;
             background-color: var(--accent-green);
             color: #000;
-            padding: 14px 35px;
-            border-radius: 8px;
+            padding: 16px 40px;
+            border-radius: 10px;
             font-weight: 700;
             text-decoration: none;
-            font-size: 1.1rem;
+            font-size: 1.15rem;
             transition: all 0.3s ease;
-            box-shadow: 0 0 20px rgba(0, 255, 102, 0.4);
+            box-shadow: 0 0 25px rgba(0, 255, 102, 0.4);
         }
 
         .cta-btn:hover {
             background-color: var(--accent-green-hover);
             transform: translateY(-2px);
-            box-shadow: 0 0 30px rgba(0, 255, 102, 0.6);
+            box-shadow: 0 0 35px rgba(0, 255, 102, 0.6);
         }
 
         .stats-bar {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
             gap: 20px;
             max-width: 900px;
             margin: 40px auto;
@@ -141,13 +199,14 @@
         .stat-card {
             background: var(--card-bg);
             border: 1px solid var(--border-color);
-            padding: 20px;
-            border-radius: 12px;
+            padding: 25px;
+            border-radius: 14px;
             text-align: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
         }
 
         .stat-card h3 {
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             color: var(--accent-green);
             margin-bottom: 5px;
         }
@@ -155,19 +214,29 @@
         .stat-card p {
             color: var(--text-muted);
             font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
         }
 
         .section-container {
             max-width: 1000px;
-            margin: 60px auto;
+            margin: 70px auto;
             padding: 0 20px;
         }
 
         .section-title {
             text-align: center;
-            font-size: 2rem;
-            margin-bottom: 40px;
+            font-size: 2.2rem;
+            margin-bottom: 15px;
             color: var(--text-main);
+        }
+
+        .section-desc {
+            text-align: center;
+            color: var(--text-muted);
+            max-width: 700px;
+            margin: 0 auto 40px;
+            font-size: 1.05rem;
         }
 
         .grid-3 {
@@ -179,33 +248,34 @@
         .info-card {
             background: var(--card-bg);
             border: 1px solid var(--border-color);
-            padding: 30px;
-            border-radius: 12px;
-            transition: border-color 0.3s;
+            padding: 35px 30px;
+            border-radius: 14px;
+            transition: all 0.3s;
         }
 
         .info-card:hover {
             border-color: var(--accent-green);
+            transform: translateY(-3px);
         }
 
         .info-card h4 {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             margin-bottom: 12px;
             color: var(--accent-green);
         }
 
         .info-card p {
             color: var(--text-muted);
-            font-size: 0.95srem;
+            font-size: 0.95rem;
         }
 
         .tokenomics-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1.2fr 0.8fr;
             gap: 30px;
             background: var(--card-bg);
             border: 1px solid var(--border-color);
-            border-radius: 16px;
+            border-radius: 18px;
             padding: 40px;
             align-items: center;
         }
@@ -215,7 +285,7 @@
                 grid-template-columns: 1fr;
             }
             .hero h1 {
-                font-size: 2.2rem;
+                font-size: 2.3rem;
             }
         }
 
@@ -224,17 +294,17 @@
         }
 
         .token-list li {
-            margin-bottom: 15px;
-            font-size: 1.05rem;
+            margin-bottom: 18px;
+            font-size: 1.1rem;
             display: flex;
             justify-content: space-between;
             border-bottom: 1px solid var(--border-color);
-            padding-bottom: 8px;
+            padding-bottom: 10px;
         }
 
         .token-list li span {
             color: var(--accent-green);
-            font-weight: 600;
+            font-weight: 700;
         }
 
         .roadmap-timeline {
@@ -246,39 +316,49 @@
         .roadmap-item {
             background: var(--card-bg);
             border: 1px solid var(--border-color);
-            padding: 20px 25px;
-            border-radius: 10px;
+            padding: 25px;
+            border-radius: 12px;
             display: flex;
             align-items: center;
-            gap: 20px;
+            gap: 25px;
         }
 
         .roadmap-item span {
             color: var(--accent-green);
             font-weight: 700;
-            font-size: 1.2rem;
+            font-size: 1.4rem;
+            background: rgba(0, 255, 102, 0.1);
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            border: 1px solid rgba(0, 255, 102, 0.3);
         }
 
         footer {
             border-top: 1px solid var(--border-color);
             text-align: center;
-            padding: 40px 20px;
-            margin-top: 80px;
+            padding: 45px 20px;
+            margin-top: 90px;
             color: var(--text-muted);
             font-size: 0.9rem;
+            background: rgba(8, 13, 10, 0.95);
         }
 
         .social-links {
             display: flex;
             justify-content: center;
-            gap: 25px;
-            margin-bottom: 20px;
+            gap: 30px;
+            margin-bottom: 25px;
         }
 
         .social-links a {
             color: var(--text-main);
             text-decoration: none;
             font-weight: 600;
+            font-size: 1.05rem;
             transition: color 0.3s;
         }
 
@@ -290,7 +370,10 @@
 <body>
 
     <header>
-        <div class="logo">$NOTBOT</div>
+        <div class="logo-container">
+            <div class="logo-icon">🤖</div>
+            <div class="logo-text">$NOTBOT</div>
+        </div>
         <ul class="nav-links">
             <li><a href="#about">About</a></li>
             <li><a href="#tokenomics">Tokenomics</a></li>
@@ -299,11 +382,15 @@
     </header>
 
     <section class="hero">
+        <div class="hero-robot-avatar">
+            <span class="robot-face">🤖✅</span>
+            <div class="status-badge-absolute">VERIFIED</div>
+        </div>
         <div class="badge">✓ $NOTBOT ON SOLANA</div>
         <h1>I'M NOT A <span>ROBOT</span></h1>
         <p class="tagline">JUST TRYING TO PROVE I'M HUMAN</p>
-        <p class="desc">A robot trying to become human. Documenting every failed attempt.</p>
-        <div style="margin-top: 30px;">
+        <p class="desc">A robot trying to become human. Documenting every failed attempt through pure community resilience.</p>
+        <div style="margin-top: 35px;">
             <a href="https://t.me/CaptchaFailedAI" target="_blank" class="cta-btn">BUY $NOTBOT</a>
         </div>
     </section>
@@ -325,27 +412,28 @@
 
     <section id="about" class="section-container">
         <h2 class="section-title">NOT YOUR AVERAGE ROBOT</h2>
-        <p style="text-align: center; color: var(--text-muted); max-width: 700px; margin: 0 auto 40px;">
+        <p class="section-desc">
             NotBot isn't just another coin. It's a mission. A learning curve. And a lot of failed Captchas.
         </p>
         <div class="grid-3">
             <div class="info-card">
-                <h4>REAL MISSION</h4>
-                <p>Not perfect. Just persistent. Building value through genuine organic traction.</p>
+                <h4>🤖 LEARNING</h4>
+                <p>Adapting to the decentralized world, one intelligent block at a time.</p>
             </div>
             <div class="info-card">
-                <h4>STRONG COMMUNITY</h4>
-                <p>Built by humans. For humans. United under the command of the absolute empire.</p>
+                <h4>❌ FAILING</h4>
+                <p>Embracing every failed captcha as proof of authentic human struggle.</p>
             </div>
             <div class="info-card">
-                <h4>BUILT FOR GROWTH</h4>
-                <p>More than a meme. It's a movement engineered to conquer the Solana ecosystem.</p>
+                <h4>✅ TRYING AGAIN</h4>
+                <p>Relentless momentum pushing forward to conquer the Solana ecosystem.</p>
             </div>
         </div>
     </section>
 
     <section id="tokenomics" class="section-container">
         <h2 class="section-title">TOKENOMICS</h2>
+        <p class="section-desc">Built for growth, powered by absolute community structure.</p>
         <div class="tokenomics-grid">
             <div>
                 <ul class="token-list">
@@ -356,42 +444,44 @@
                     <li>Airdrops <span>10%</span></li>
                 </ul>
             </div>
-            <div style="text-align: center;">
-                <h3 style="color: var(--accent-green); margin-bottom: 15px; font-size: 1.5rem;">MANY FAILURES BRIGHTER FUTURE</h3>
-                <p style="color: var(--text-muted);">Fairly distributed, locked liquidity, and structured for maximum long-term dominance.</p>
+            <div style="text-align: center; padding: 20px;">
+                <div style="font-size: 3rem; margin-bottom: 15px;">🤖💬</div>
+                <h3 style="color: var(--accent-green); margin-bottom: 10px; font-size: 1.3rem;">MANY FAILURES BRIGHTER FUTURE</h3>
+                <p style="color: var(--text-muted); font-size: 0.9rem;">Fairly distributed, locked liquidity, and structured for absolute dominance.</p>
             </div>
         </div>
     </section>
 
     <section id="roadmap" class="section-container">
         <h2 class="section-title">ROADMAP</h2>
+        <p class="section-desc">The path toward ultimate dominion.</p>
         <div class="roadmap-timeline">
             <div class="roadmap-item">
                 <span>01</span>
                 <div>
-                    <h4 style="color: var(--text-main);">Launch & Community Building</h4>
-                    <p style="color: var(--text-muted);">Smart contract deployment, Telegram mobilization, and organic growth.</p>
+                    <h4 style="color: var(--text-main); font-size: 1.1rem; margin-bottom: 4px;">Launch & Community Building</h4>
+                    <p style="color: var(--text-muted); font-size: 0.9rem;">Smart contract deployment, Telegram mobilization, and organic growth.</p>
                 </div>
             </div>
             <div class="roadmap-item">
                 <span>02</span>
                 <div>
-                    <h4 style="color: var(--text-main);">Listings & Partnerships</h4>
-                    <p style="color: var(--text-muted);">CoinGecko, CoinMarketCap fast-track, and strategic Web3 alliances.</p>
+                    <h4 style="color: var(--text-main); font-size: 1.1rem; margin-bottom: 4px;">Listings & Partnerships</h4>
+                    <p style="color: var(--text-muted); font-size: 0.9rem;">CoinGecko, CoinMarketCap fast-track, and strategic Web3 alliances.</p>
                 </div>
             </div>
             <div class="roadmap-item">
                 <span>03</span>
                 <div>
-                    <h4 style="color: var(--text-main);">More Utilities</h4>
-                    <p style="color: var(--text-muted);">Expanding ecosystem features, automated bot tooling, and rewards.</p>
+                    <h4 style="color: var(--text-main); font-size: 1.1rem; margin-bottom: 4px;">More Utilities</h4>
+                    <p style="color: var(--text-muted); font-size: 0.9rem;">Expanding ecosystem features, automated bot tooling, and rewards.</p>
                 </div>
             </div>
             <div class="roadmap-item">
                 <span>04</span>
                 <div>
-                    <h4 style="color: var(--text-main);">NotBot World Domination</h4>
-                    <p style="color: var(--text-muted);">Total supremacy across the Solana network and beyond.</p>
+                    <h4 style="color: var(--text-main); font-size: 1.1rem; margin-bottom: 4px;">NotBot World Domination</h4>
+                    <p style="color: var(--text-muted); font-size: 0.9rem;">Total supremacy across the Solana network and beyond.</p>
                 </div>
             </div>
         </div>
@@ -408,4 +498,3 @@
 
 </body>
 </html>
-
